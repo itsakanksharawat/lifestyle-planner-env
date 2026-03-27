@@ -1,0 +1,1 @@
+# Placeholder client file for future OpenEnv client integration
