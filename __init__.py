@@ -1,1 +1,1 @@
-from models import LifestyleAction, LifestyleObservation, LifestyleState
+from .models import LifestyleAction, LifestyleObservation, LifestyleState
