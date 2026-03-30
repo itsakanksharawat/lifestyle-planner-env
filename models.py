@@ -1,21 +1,38 @@
-from pydantic import BaseModel, Field
-from typing import Dict, Any
+from pydantic import BaseModel
+from typing import List, Optional
+
+
+class LifestyleTask(BaseModel):
+    name: str
+    priority: int
+    duration: int
+    deadline: int
 
 
 class LifestyleObservation(BaseModel):
-    task_type: str
-    user_state: Dict[str, Any]
-    instruction: str
-
-
-class LifestyleAction(BaseModel):
-    action_type: str = Field(..., description="Type of action being taken")
-    plan: str = Field(..., description="The agent's proposed lifestyle plan or strategy")
+    current_time: int
+    max_time: int
+    energy_level: int
+    tasks: List[LifestyleTask]
+    completed_tasks: List[str]
 
 
 class LifestyleState(BaseModel):
-    episode_id: str
-    step_count: int
-    task_type: str
-    score: float = 0.0
-    done: bool = False
+    current_time: int
+    max_time: int
+    energy_level: int
+    tasks: List[LifestyleTask]
+    completed_tasks: List[str]
+    total_reward: float
+
+
+class LifestyleAction(BaseModel):
+    task_name: str
+
+
+class StepResult(BaseModel):
+    observation: LifestyleObservation
+    reward: float
+    done: bool
+    info: dict
+    
