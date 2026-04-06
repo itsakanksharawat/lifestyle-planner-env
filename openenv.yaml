@@ -1,0 +1,43 @@
+name: lifestyle-planner-env
+version: "1.0.0"
+description: >
+  RL environment for personal lifestyle planning. An agent must plan realistic
+  daily schedules, recover broken days, and optimize weekly routines across
+  three difficulty levels. Episodes are multi-step with structured grader feedback.
+
+tasks:
+  - name: plan_day
+    description: Generate a daily schedule given energy, goals, fixed events, and deadline pressure.
+    difficulties: [easy, medium, hard]
+    max_steps: 3
+    reward_range: [0.0, 1.0]
+
+  - name: recover_day
+    description: Triage and recover a day that has gone off-track.
+    difficulties: [easy, medium, hard]
+    max_steps: 3
+    reward_range: [0.0, 1.0]
+
+  - name: optimize_week
+    description: Design a 7-day routine template that addresses documented failure patterns.
+    difficulties: [easy, medium, hard]
+    max_steps: 3
+    reward_range: [0.0, 1.0]
+
+grading:
+  type: rubric
+  criteria_per_task: 5
+  aggregation: weighted_sum
+
+baseline:
+  rule_based_avg: 0.65
+  llm_avg: 0.78
+
+server:
+  framework: fastapi
+  port: 8000
+  endpoints:
+    - POST /reset
+    - POST /step
+    - GET /state/{episode_id}
+    - GET /health

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lifestyle Planner Env</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>🧠 Lifestyle Planner Environment</h1>
+    <p class="subtitle">Hackathon Demo UI for your OpenEnv-compatible backend</p>
+
+    <!-- Start Episode -->
+    <section class="card">
+      <h2>Start Episode</h2>
+      <div class="row">
+        <div>
+          <label for="taskType">Task Type</label>
+          <select id="taskType">
+            <option value="">Random</option>
+            <option value="plan_day">plan_day</option>
+            <option value="recover_day">recover_day</option>
+            <option value="optimize_week">optimize_week</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty">
+            <option value="">Random</option>
+            <option value="easy">easy</option>
+            <option value="medium">medium</option>
+            <option value="hard">hard</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="startBtn">Start Episode</button>
+      <p id="episodeIdText"></p>
+    </section>
+
+    <!-- Observation -->
+    <section class="card">
+      <h2>Observation</h2>
+      <div id="observationBox" class="output-box">No episode started yet.</div>
+    </section>
+
+    <!-- Action Input -->
+    <section class="card">
+      <h2>Submit Agent Plan</h2>
+
+      <label for="summary">Summary</label>
+      <textarea id="summary" rows="3" placeholder="Write a short lifestyle plan summary..."></textarea>
+
+      <label>Schedule Blocks</label>
+
+      <div class="schedule-block">
+        <h3>Block 1</h3>
+        <div class="row">
+          <div>
+            <label>Start</label>
+            <input id="start1" type="text" placeholder="07:00" />
+          </div>
+          <div>
+            <label>End</label>
+            <input id="end1" type="text" placeholder="08:00" />
+          </div>
+        </div>
+        <label>Activity</label>
+        <input id="activity1" type="text" placeholder="Workout" />
+        <label>Priority</label>
+        <select id="priority1">
+          <option value="high">high</option>
+          <option value="medium">medium</option>
+          <option value="low">low</option>
+        </select>
+        <label>Rationale</label>
+        <input id="rationale1" type="text" placeholder="Morning energy is highest" />
+      </div>
+
+      <div class="schedule-block">
+        <h3>Block 2</h3>
+        <div class="row">
+          <div>
+            <label>Start</label>
+            <input id="start2" type="text" placeholder="09:00" />
+          </div>
+          <div>
+            <label>End</label>
+            <input id="end2" type="text" placeholder="11:00" />
+          </div>
+        </div>
+        <label>Activity</label>
+        <input id="activity2" type="text" placeholder="Deep Work / Study" />
+        <label>Priority</label>
+        <select id="priority2">
+          <option value="high">high</option>
+          <option value="medium">medium</option>
+          <option value="low">low</option>
+        </select>
+        <label>Rationale</label>
+        <input id="rationale2" type="text" placeholder="Focused block for major tasks" />
+      </div>
+
+      <label for="strategies">Strategies (comma separated)</label>
+      <input id="strategies" type="text" placeholder="time-blocking, energy-matching, habit stacking" />
+
+      <label for="selfScore">Self Score (0 to 1)</label>
+      <input id="selfScore" type="number" step="0.1" min="0" max="1" value="0.8" />
+
+      <label for="notes">Notes</label>
+      <textarea id="notes" rows="3" placeholder="Any extra notes..."></textarea>
+
+      <button id="submitBtn">Submit Plan</button>
+    </section>
+
+    <!-- Result -->
+    <section class="card">
+      <h2>Result</h2>
+      <div id="resultBox" class="output-box">No result yet.</div>
+    </section>
+
+    <!-- History -->
+    <section class="card">
+      <h2>History</h2>
+      <div id="historyBox" class="output-box">No history yet.</div>
+    </section>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
