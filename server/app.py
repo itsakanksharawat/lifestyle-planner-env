@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """
 server/app.py — FastAPI server exposing the Lifestyle Planner Environment.
 
@@ -128,3 +129,32 @@ def state(episode_id: str):
     if env is None:
         raise HTTPException(404, f"Episode '{episode_id}' not found.")
     return env.state()
+=======
+from fastapi import FastAPI
+from lifestyle_planner_env.models import LifestyleAction
+from lifestyle_planner_env.server.lifestyle_planner_environment import LifestylePlannerEnv
+
+app = FastAPI(title="Lifestyle Planner OpenEnv")
+
+env = LifestylePlannerEnv()
+
+
+@app.get("/")
+def home():
+    return {"message": "Lifestyle Planner OpenEnv is running"}
+
+
+@app.post("/reset")
+def reset():
+    return env.reset()
+
+
+@app.get("/state")
+def state():
+    return env.state()
+
+
+@app.post("/step")
+def step(action: LifestyleAction):
+    return env.step(action)
+>>>>>>> 6d39c54215ae40124371e71bc5c5390de8d5fe7e
