@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 # Lifestyle Planner Environment
 
 An **OpenEnv-compatible reinforcement learning environment** for personal
@@ -164,3 +165,16 @@ Install dependencies:
 ```bash
 pip install fastapi uvicorn pydantic
 >>>>>>> 6d39c54215ae40124371e71bc5c5390de8d5fe7e
+=======
+---
+title: Lifestyle Planner Env
+emoji: 🐠
+colorFrom: green
+colorTo: yellow
+sdk: docker
+pinned: false
+license: mit
+---
+
+Check out the configuration reference at https://huggingface.co/docs/hub/spaces-config-reference
+>>>>>>> 534de6a27bda386443ceb5f6a454935ee6ff8b4f
