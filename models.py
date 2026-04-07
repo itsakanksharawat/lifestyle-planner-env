@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 """
 models.py — Pydantic schemas for the Lifestyle Planner Environment.
 
@@ -131,43 +130,3 @@ class LifestyleState(BaseModel):
     cumulative_score: float = 0.0
     done: bool = False
     history: List[StepRecord] = Field(default_factory=list)
-=======
-from pydantic import BaseModel
-from typing import List, Optional
-
-
-class LifestyleTask(BaseModel):
-    name: str
-    priority: int
-    duration: int
-    deadline: int
-
-
-class LifestyleObservation(BaseModel):
-    current_time: int
-    max_time: int
-    energy_level: int
-    tasks: List[LifestyleTask]
-    completed_tasks: List[str]
-
-
-class LifestyleState(BaseModel):
-    current_time: int
-    max_time: int
-    energy_level: int
-    tasks: List[LifestyleTask]
-    completed_tasks: List[str]
-    total_reward: float
-
-
-class LifestyleAction(BaseModel):
-    task_name: str
-
-
-class StepResult(BaseModel):
-    observation: LifestyleObservation
-    reward: float
-    done: bool
-    info: dict
-    
->>>>>>> 6d39c54215ae40124371e71bc5c5390de8d5fe7e
