@@ -1,15 +1,5 @@
 """
 server/app.py — FastAPI server exposing the Lifestyle Planner Environment.
-
-Routes follow the OpenEnv convention:
-    POST /reset           → start new episode, returns observation
-    POST /step            → advance episode, returns (obs, reward, done, info)
-    GET  /state/{id}      → return current episode state
-    GET  /health          → liveness probe
-    GET  /                → basic API info
-
-Sessions are keyed by episode_id, stored in a simple in-memory dict.
-For production, replace with Redis or a proper session store.
 """
 
 from __future__ import annotations
@@ -19,6 +9,7 @@ from typing import Any, Dict, Optional
 from fastapi import FastAPI, HTTPException, Body
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+import uvicorn
 
 from models import LifestyleAction, LifestyleObservation, LifestyleState
 from server.lifestyle_planner_environment import LifestylePlannerEnvironment
@@ -34,12 +25,12 @@ app = FastAPI(
 # Enable CORS so frontend can call backend from browser
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],   # okay for local demo / hackathon
+    allow_origins=["*"],
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# In-memory session store: episode_id → environment instance
+# In-memory session store
 _sessions: Dict[str, LifestylePlannerEnvironment] = {}
 
 
@@ -120,7 +111,6 @@ def step(req: StepRequest):
         raise HTTPException(400, str(e))
 
     if done:
-        # Clean up session on episode completion
         del _sessions[req.episode_id]
 
     return StepResponse(observation=obs, reward=reward, done=done, info=info)
@@ -133,3 +123,15 @@ def state(episode_id: str):
     if env is None:
         raise HTTPException(404, f"Episode '{episode_id}' not found.")
     return env.state()
+
+
+# ---------------------------------------------------------------------------
+# Main entrypoint
+# ---------------------------------------------------------------------------
+
+def main():
+    uvicorn.run("server.app:app", host="0.0.0.0", port=8000)
+
+
+if __name__ == "__main__":
+    main()
