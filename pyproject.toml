@@ -1,0 +1,8 @@
+[project]
+name = "lifestyle-planner-env"
+version = "0.1.0"
+description = "OpenEnv-compatible RL environment for lifestyle planning tasks"
+requires-python = ">=3.10"
+
+[tool.openenv]
+entrypoint = "inference.py"
