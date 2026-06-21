@@ -1,7 +1,7 @@
 ---
 
 title: Lifestyle Planner Env
-emoji: 🧠
+
 colorFrom: blue
 colorTo: purple
 sdk: docker
