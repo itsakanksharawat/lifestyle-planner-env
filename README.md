@@ -10,6 +10,7 @@ pinned: false
 ---
 
 
+
 # Lifestyle Planner Environment
 
 An OpenEnv-compatible reinforcement learning environment for personal lifestyle planning.
